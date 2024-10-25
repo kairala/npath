@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { PublicEnvScript } from "next-runtime-env";
+
 import "./globals.css";
+import { ListPokemonV1Provider } from "../features/listPokemons/v1/context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <PublicEnvScript />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
       >
-        {children}
+        <ListPokemonV1Provider>{children}</ListPokemonV1Provider>
       </body>
     </html>
   );
